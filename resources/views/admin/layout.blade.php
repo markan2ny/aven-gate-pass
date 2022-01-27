@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard 2</title>
-
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>{{ config('app.name', 'Laravel') }} | SYSTEM</title>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
@@ -23,18 +23,15 @@
   </div> --}}
 
   <!-- Navbar -->
-  @include('partials.navbar')
+  <x-admin.navbar/>
   <!-- /.navbar -->
-
   <!-- Main Sidebar Container -->
-  @include('partials.sidebar')
-
+  <x-admin.sidebar/>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    @include('partials.header')
+    <x-admin.header/>
     <!-- /.content-header -->
-
     <!-- Main content -->
     <section class="content">
       {{ $slot }}
@@ -42,7 +39,6 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -50,7 +46,7 @@
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
-  @include('partials.footer')
+  <x-admin.footer/>
 </div>
 <!-- ./wrapper -->
 
