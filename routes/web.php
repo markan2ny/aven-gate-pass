@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GatePassController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
@@ -16,14 +17,16 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard.index');
 });
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
-Route::get('/dashboard', [AdminController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/add-new-gatepass', [GatePassController::class, 'createGatePass'])->middleware(['auth'])->name('create-gatepass');
+Route::get('/view-all-gatepass', [GatePassController::class, 'viewGatePass'])->middleware(['auth'])->name('view-gatepass');
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
 
 require __DIR__.'/auth.php';    

@@ -4,16 +4,18 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class layout extends Component
+class Header extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct( )
+    public $title ,$path;
+    public function __construct( $title, $path )
     {
-        
+        $this->title = $title;
+        $this->path = $path;
     }
 
     /**
@@ -23,6 +25,6 @@ class layout extends Component
      */
     public function render()
     {
-        return view('dashboard.layout');
+        return view('components.header');
     }
 }
