@@ -16,14 +16,13 @@ class CreateGatePassesTable extends Migration
         Schema::create('gate_passes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->date('entry_time');
-            $table->date('track_no');
-            $table->string('sites');
-            $table->string('driver_name');
-            $table->string('plate_no');
+            $table->string('track_no');
+            $table->string('destination');
+            $table->dateTime('date');
+            $table->string('driver');
+            $table->string('type_of_request');
             $table->string('item');
-            $table->string('quantity');
-            $table->string('purpose');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
