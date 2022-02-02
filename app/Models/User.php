@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Site;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -20,8 +21,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'username',
         'password',
+        'role_name',
+        'site_id'
     ];
 
     /**
@@ -42,4 +45,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function getMySite() {
+
+        return $this->belongsTo(Site::class, 'site_id', 'id');
+
+    }
+
+
 }

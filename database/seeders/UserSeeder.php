@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -15,15 +17,17 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create(
-            [
-                'name' => 'Custodian',
-                'email' => 'custodian@app.com',
-                'password' => Hash::make('password'),
-                'created_at' => \Carbon\Carbon::now(),
-            ]
-        );
-
-        $user->assignRole('custodian');
+       DB::table('users')
+                ->insert([
+                    [
+                        'name' => 'Admin',
+                        'username' => strtolower('admin'),
+                        'password' => Hash::make('password'),
+                        'site_id'   => 1,
+                        'role_name' => 'Administrator',
+                        'created_at' => Carbon::now(),
+                    ]
+                ]);
+       
     }
 }

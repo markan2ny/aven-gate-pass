@@ -15,14 +15,16 @@ class CreateGatePassesTable extends Migration
     {
         Schema::create('gate_passes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('track_no');
-            $table->string('destination');
-            $table->dateTime('date');
-            $table->string('driver');
             $table->string('type_of_request');
-            $table->string('item');
-            $table->integer('quantity');
+            $table->dateTime('date');
+            $table->string('name');
+            $table->string('destination');
+            $table->string('department');
+            $table->string('receiver');
+            $table->string('driver');
+            $table->string('vehicle');
+            $table->text('purpose');
             $table->timestamps();
         });
     }
